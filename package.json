@@ -1,0 +1,27 @@
+{
+  "name": "barchartdemo",
+  "version": "1.0.0",
+  "description": "Bar chart 3D demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoctorTone/BarChartDemo.git"
+  },
+  "author": "Dr Tony Glover",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DoctorTone/BarChartDemo/issues"
+  },
+  "homepage": "https://github.com/DoctorTone/BarChartDemo#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "three": "^0.107.0",
+    "three-trackballcontrols": "0.0.8"
+  }
+}
