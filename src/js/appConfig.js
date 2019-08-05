@@ -31,7 +31,7 @@ const APPCONFIG = {
         z: 1
     },
     LABEL_HEIGHT: 2,
-    LABEL_TEXTCOLOUR: "rgba(255, 165, 0, 1.0)",
+    LABEL_TEXTCOLOUR: "rgba(255, 255, 255, 1.0)",
     LABEL_MONTH_OFFSET: {
         x: 0,
         y: 0,
