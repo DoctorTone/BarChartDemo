@@ -22,9 +22,13 @@ class Framework extends BaseApp {
     }
 
     addGroundPlane() {
-
+        const groundGeom = new THREE.PlaneBufferGeometry(APPCONFIG.GROUND_WIDTH, APPCONFIG.GROUND_HEIGHT, APPCONFIG.GROUND_SEGMENTS);
+        const groundMat = new THREE.MeshLambertMaterial( {color: APPCONFIG.GROUND_MATERIAL} );
+        const ground = new THREE.Mesh(groundGeom, groundMat);
+        ground.rotation.x = -Math.PI/2;
+        this.root.add(ground);
     }
-    
+
     createBarMaterials() {
         let barMaterial;
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {

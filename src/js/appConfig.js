@@ -7,6 +7,9 @@ const APPCONFIG = {
     BAR_SEGMENTS: 16,
     NUM_BARS_PER_ROW: 12,
     NUM_ROWS: 5,
+    GROUND_WIDTH: 1000,
+    GROUND_HEIGHT: 640,
+    GROUND_SEGMENTS: 16,
     barStartPos: {
         x: -85,
         y: 0,
