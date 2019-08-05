@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { BaseApp } from "./baseApp";
 import { APPCONFIG } from "./appConfig";
 import { LabelManager } from "./LabelManager";
+import controlkit from "controlkit";
 
 import salesData from "../../data/salesData.json";
 
@@ -38,6 +39,48 @@ class Framework extends BaseApp {
             barMaterial = new THREE.MeshLambertMaterial( {color: APPCONFIG.BAR_COLOURS[row]} );
             this.barMaterials.push(barMaterial);
         }
+    }
+
+    createGUI() {
+        let yearConfig = {
+            Year1: true,
+            Year2: true,
+            Year3: true,
+            Year4: true,
+            Year5: true
+        }
+
+        let gui = new controlkit();
+        gui.addPanel( {label: "Configuration", enable: false})
+            .addSubGroup( {label: "Years", enable: false} )
+                .addCheckbox(yearConfig, "Year1", {
+                    onChange: () => {
+                        this.toggleYear("Year1");
+                    }
+                })
+                .addCheckbox(yearConfig, "Year2", {
+                    onChange: () => {
+                        this.toggleYear("Year2");
+                    }
+                })
+                .addCheckbox(yearConfig, "Year3", {
+                    onChange: () => {
+                        this.toggleYear("Year3");
+                    }
+                })
+                .addCheckbox(yearConfig, "Year4", {
+                    onChange: () => {
+                        this.toggleYear("Year4");
+                    }
+                })
+                .addCheckbox(yearConfig, "Year5", {
+                    onChange: () => {
+                        this.toggleYear("Year5");
+                    }
+                })
+            .addSubGroup( {label: "Months", enable: false} )
+
+        this.gui = gui;
     }
 
     createScene() {
@@ -104,6 +147,8 @@ class Framework extends BaseApp {
                 }
             }
         }
+
+        this.createGUI();
     }
 }
 
