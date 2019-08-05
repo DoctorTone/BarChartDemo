@@ -93,6 +93,7 @@ class Framework extends BaseApp {
                     labelProperty = {};
                     labelProperty.position = new THREE.Vector3();
                     labelProperty.position.copy(barMesh.position);
+                    labelProperty.position.y = APPCONFIG.LABEL_HEIGHT;
                     labelProperty.position.add(APPCONFIG.LABEL_YEAR_OFFSET);
                     labelProperty.scale = APPCONFIG.LABEL_SCALE;
                     labelProperty.visibility = true;
