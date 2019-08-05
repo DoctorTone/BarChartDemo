@@ -113,6 +113,7 @@ class Framework extends BaseApp {
             for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
                 // Create mesh
                 barMesh = new THREE.Mesh(barGeom, this.barMaterials[row]);
+                barMesh.name = currentGroup.name + APPCONFIG.MONTHS[bar];
                 bars.push(barMesh);
                 barMesh.position.set(APPCONFIG.barStartPos.x + (APPCONFIG.BAR_INC_X * bar), APPCONFIG.barStartPos.y, APPCONFIG.barStartPos.z + (APPCONFIG.BAR_INC_Z * row));
 
