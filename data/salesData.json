@@ -2,15 +2,15 @@
     "Year1": [
         {
             "month": "Jan",
-            "sales": 6
+            "sales": 1
         },
         {
             "month": "Feb",
-            "sales": 6
+            "sales": 3
         },
         {
             "month": "Mar",
-            "sales": 6
+            "sales": 4
         },
         {
             "month": "Apr",
@@ -22,31 +22,31 @@
         },
         {
             "month": "Jun",
-            "sales": 6
+            "sales": 8
         },
         {
             "month": "Jul",
-            "sales": 6
+            "sales": 8
         },
         {
             "month": "Aug",
-            "sales": 6
+            "sales": 9
         },
         {
             "month": "Sep",
-            "sales": 6
+            "sales": 7
         },
         {
             "month": "Oct",
-            "sales": 6
+            "sales": 4
         },
         {
             "month": "Nov",
-            "sales": 6
+            "sales": 3
         },
         {
             "month": "Dec",
-            "sales": 6
+            "sales": 0
         }
     ],
 

@@ -3,7 +3,7 @@
 const APPCONFIG = {
     BAR_COLOUR : 0xfff000,
     BAR_RADIUS: 5,
-    BAR_HEIGHT: 15,
+    BAR_HEIGHT: 10,
     BAR_SEGMENTS: 16,
     NUM_BARS_PER_ROW: 12,
     NUM_ROWS: 5,
@@ -30,6 +30,7 @@ const APPCONFIG = {
         y: 5,
         z: 1
     },
+    LABEL_HEIGHT: 1,
     LABEL_TEXTCOLOUR: "rgba(255, 165, 0, 1.0)",
     LABEL_MONTH_OFFSET: {
         x: 0,

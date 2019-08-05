@@ -69,13 +69,18 @@ class Framework extends BaseApp {
                 currentYear = row + 1;
                 yearData = salesData["Year" + currentYear];
                 monthData = yearData[bar].sales;
+                if (monthData === 0) {
+                    monthData = 0.001;
+                }
                 barMesh.scale.set(1, monthData, 1);
+                barMesh.position.y += (monthData * 5);
                 this.root.add(barMesh);
                 // Labels
                 if (row === 0) {
                     labelProperty = {};
                     labelProperty.position = new THREE.Vector3();
                     labelProperty.position.copy(barMesh.position);
+                    labelProperty.position.y = APPCONFIG.LABEL_HEIGHT;
                     labelProperty.position.add(APPCONFIG.LABEL_MONTH_OFFSET);
                     labelProperty.scale = APPCONFIG.LABEL_SCALE;
                     labelProperty.visibility = true;
