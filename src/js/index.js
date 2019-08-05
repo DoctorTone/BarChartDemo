@@ -103,13 +103,19 @@ class Framework extends BaseApp {
         let yearData;
         let monthData;
         let currentYear;
+        let currentGroup;
         
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
+            currentYear = row + 1;
+            // Create group
+            currentGroup = new THREE.Group();
+            currentGroup.name = "Year" + currentYear;
             for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
+                // Create mesh
                 barMesh = new THREE.Mesh(barGeom, this.barMaterials[row]);
                 bars.push(barMesh);
                 barMesh.position.set(APPCONFIG.barStartPos.x + (APPCONFIG.BAR_INC_X * bar), APPCONFIG.barStartPos.y, APPCONFIG.barStartPos.z + (APPCONFIG.BAR_INC_Z * row));
-                currentYear = row + 1;
+
                 yearData = salesData["Year" + currentYear];
                 monthData = yearData[bar].sales;
                 if (monthData === 0) {
@@ -117,7 +123,10 @@ class Framework extends BaseApp {
                 }
                 barMesh.scale.set(1, monthData, 1);
                 barMesh.position.y += (monthData * 5);
-                this.root.add(barMesh);
+                currentGroup.add(barMesh);
+
+                this.root.add(currentGroup);
+
                 // Labels
                 if (row === 0) {
                     labelProperty = {};
@@ -149,6 +158,13 @@ class Framework extends BaseApp {
         }
 
         this.createGUI();
+    }
+
+    toggleYear(year) {
+        let currentYear = this.getObjectByName(year);
+        if (currentYear) {
+            currentYear.visible = !currentYear.visible;
+        }
     }
 }
 
