@@ -26,6 +26,7 @@ class Framework extends BaseApp {
         const groundMat = new THREE.MeshLambertMaterial( {color: APPCONFIG.GROUND_MATERIAL} );
         const ground = new THREE.Mesh(groundGeom, groundMat);
         ground.rotation.x = -Math.PI/2;
+        ground.position.y = -15;
         this.root.add(ground);
     }
 
@@ -66,12 +67,24 @@ class Framework extends BaseApp {
                     labelProperty = {};
                     labelProperty.position = new THREE.Vector3();
                     labelProperty.position.copy(barMesh.position);
-                    labelProperty.position.add(APPCONFIG.LABEL_OFFSET);
+                    labelProperty.position.add(APPCONFIG.LABEL_MONTH_OFFSET);
                     labelProperty.scale = APPCONFIG.LABEL_SCALE;
                     labelProperty.visibility = true;
                     labelProperty.textColour = APPCONFIG.LABEL_TEXTCOLOUR;
                     labelProperty.multiLine = false;
                     label = this.labelManager.create("monthLabel", APPCONFIG.MONTHS[bar], labelProperty);
+                    this.root.add(label.getSprite());
+                }
+                if (bar === 0) {
+                    labelProperty = {};
+                    labelProperty.position = new THREE.Vector3();
+                    labelProperty.position.copy(barMesh.position);
+                    labelProperty.position.add(APPCONFIG.LABEL_YEAR_OFFSET);
+                    labelProperty.scale = APPCONFIG.LABEL_SCALE;
+                    labelProperty.visibility = true;
+                    labelProperty.textColour = APPCONFIG.LABEL_TEXTCOLOUR;
+                    labelProperty.multiLine = false;
+                    label = this.labelManager.create("yearLabel", APPCONFIG.YEARS[row], labelProperty);
                     this.root.add(label.getSprite());
                 }
             }

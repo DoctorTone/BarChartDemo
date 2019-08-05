@@ -30,10 +30,15 @@ const APPCONFIG = {
         z: 1
     },
     LABEL_TEXTCOLOUR: "rgba(255, 165, 0, 1.0)",
-    LABEL_OFFSET: {
+    LABEL_MONTH_OFFSET: {
         x: 0,
         y: -7.5,
         z: 10
+    },
+    LABEL_YEAR_OFFSET: {
+        x: -15,
+        y: -7.5,
+        z: 0
     },
     MONTHS: [
         "Jan",
@@ -48,6 +53,13 @@ const APPCONFIG = {
         "Oct",
         "Nov",
         "Dec"
+    ],
+    YEARS: [
+        "Year 1",
+        "Year 2",
+        "Year 3",
+        "Year 4",
+        "Year 5"
     ]
 }
 
