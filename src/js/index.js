@@ -5,6 +5,8 @@ import { BaseApp } from "./baseApp";
 import { APPCONFIG } from "./appConfig";
 import { LabelManager } from "./LabelManager";
 
+import salesData from "../../data/salesData.json";
+
 class Framework extends BaseApp {
     constructor() {
         super();
@@ -55,12 +57,19 @@ class Framework extends BaseApp {
         let barMesh;
         let label;
         let labelProperty;
+        let yearData;
+        let monthData;
+        let currentYear;
         
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
             for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
                 barMesh = new THREE.Mesh(barGeom, this.barMaterials[row]);
                 bars.push(barMesh);
                 barMesh.position.set(APPCONFIG.barStartPos.x + (APPCONFIG.BAR_INC_X * bar), APPCONFIG.barStartPos.y, APPCONFIG.barStartPos.z + (APPCONFIG.BAR_INC_Z * row));
+                currentYear = row + 1;
+                yearData = salesData["Year" + currentYear];
+                monthData = yearData[bar].sales;
+                barMesh.scale.set(1, monthData, 1);
                 this.root.add(barMesh);
                 // Labels
                 if (row === 0) {

@@ -1,0 +1,256 @@
+{
+    "Year1": [
+        {
+            "month": "Jan",
+            "sales": 6
+        },
+        {
+            "month": "Feb",
+            "sales": 6
+        },
+        {
+            "month": "Mar",
+            "sales": 6
+        },
+        {
+            "month": "Apr",
+            "sales": 6
+        },
+        {
+            "month": "May",
+            "sales": 6
+        },
+        {
+            "month": "Jun",
+            "sales": 6
+        },
+        {
+            "month": "Jul",
+            "sales": 6
+        },
+        {
+            "month": "Aug",
+            "sales": 6
+        },
+        {
+            "month": "Sep",
+            "sales": 6
+        },
+        {
+            "month": "Oct",
+            "sales": 6
+        },
+        {
+            "month": "Nov",
+            "sales": 6
+        },
+        {
+            "month": "Dec",
+            "sales": 6
+        }
+    ],
+
+    "Year2": [
+        {
+            "month": "Jan",
+            "sales": 6
+        },
+        {
+            "month": "Feb",
+            "sales": 6
+        },
+        {
+            "month": "Mar",
+            "sales": 6
+        },
+        {
+            "month": "Apr",
+            "sales": 6
+        },
+        {
+            "month": "May",
+            "sales": 6
+        },
+        {
+            "month": "Jun",
+            "sales": 6
+        },
+        {
+            "month": "Jul",
+            "sales": 6
+        },
+        {
+            "month": "Aug",
+            "sales": 6
+        },
+        {
+            "month": "Sep",
+            "sales": 6
+        },
+        {
+            "month": "Oct",
+            "sales": 6
+        },
+        {
+            "month": "Nov",
+            "sales": 6
+        },
+        {
+            "month": "Dec",
+            "sales": 6
+        }
+    ],
+
+    "Year3": [
+        {
+            "month": "Jan",
+            "sales": 6
+        },
+        {
+            "month": "Feb",
+            "sales": 6
+        },
+        {
+            "month": "Mar",
+            "sales": 6
+        },
+        {
+            "month": "Apr",
+            "sales": 6
+        },
+        {
+            "month": "May",
+            "sales": 6
+        },
+        {
+            "month": "Jun",
+            "sales": 6
+        },
+        {
+            "month": "Jul",
+            "sales": 6
+        },
+        {
+            "month": "Aug",
+            "sales": 6
+        },
+        {
+            "month": "Sep",
+            "sales": 6
+        },
+        {
+            "month": "Oct",
+            "sales": 6
+        },
+        {
+            "month": "Nov",
+            "sales": 6
+        },
+        {
+            "month": "Dec",
+            "sales": 6
+        }
+    ],
+
+    "Year4": [
+        {
+            "month": "Jan",
+            "sales": 6
+        },
+        {
+            "month": "Feb",
+            "sales": 6
+        },
+        {
+            "month": "Mar",
+            "sales": 6
+        },
+        {
+            "month": "Apr",
+            "sales": 6
+        },
+        {
+            "month": "May",
+            "sales": 6
+        },
+        {
+            "month": "Jun",
+            "sales": 6
+        },
+        {
+            "month": "Jul",
+            "sales": 6
+        },
+        {
+            "month": "Aug",
+            "sales": 6
+        },
+        {
+            "month": "Sep",
+            "sales": 6
+        },
+        {
+            "month": "Oct",
+            "sales": 6
+        },
+        {
+            "month": "Nov",
+            "sales": 6
+        },
+        {
+            "month": "Dec",
+            "sales": 6
+        }
+    ],
+
+    "Year5": [
+        {
+            "month": "Jan",
+            "sales": 6
+        },
+        {
+            "month": "Feb",
+            "sales": 6
+        },
+        {
+            "month": "Mar",
+            "sales": 6
+        },
+        {
+            "month": "Apr",
+            "sales": 6
+        },
+        {
+            "month": "May",
+            "sales": 6
+        },
+        {
+            "month": "Jun",
+            "sales": 6
+        },
+        {
+            "month": "Jul",
+            "sales": 6
+        },
+        {
+            "month": "Aug",
+            "sales": 6
+        },
+        {
+            "month": "Sep",
+            "sales": 6
+        },
+        {
+            "month": "Oct",
+            "sales": 6
+        },
+        {
+            "month": "Nov",
+            "sales": 6
+        },
+        {
+            "month": "Dec",
+            "sales": 6
+        }
+    ]
+}

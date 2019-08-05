@@ -10,6 +10,7 @@ const APPCONFIG = {
     GROUND_WIDTH: 1000,
     GROUND_HEIGHT: 640,
     GROUND_SEGMENTS: 16,
+    GROUND_MATERIAL: 0xcbcbcb,
     barStartPos: {
         x: -85,
         y: 0,
