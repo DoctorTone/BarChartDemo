@@ -21,6 +21,10 @@ class Framework extends BaseApp {
         super.init(container);
     }
 
+    addGroundPlane() {
+
+    }
+    
     createBarMaterials() {
         let barMaterial;
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
@@ -35,6 +39,9 @@ class Framework extends BaseApp {
         // Create root object.
         this.root = new THREE.Object3D();
         this.addToScene(this.root);
+
+        // Add ground
+        this.addGroundPlane();
 
         // Add bars to scene
         const barGeom = new THREE.CylinderBufferGeometry(APPCONFIG.BAR_RADIUS, APPCONFIG.BAR_RADIUS, APPCONFIG.BAR_HEIGHT, APPCONFIG.BAR_SEGMENTS, APPCONFIG.BAR_SEGMENTS);

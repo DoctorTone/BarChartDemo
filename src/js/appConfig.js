@@ -12,7 +12,7 @@ const APPCONFIG = {
         y: 0,
         z: 0
     },
-    BAR_INC_X: 15,
+    BAR_INC_X: 20,
     BAR_INC_Z: -15,
     BAR_COLOURS: [
         0xff0000,
@@ -29,7 +29,7 @@ const APPCONFIG = {
     LABEL_TEXTCOLOUR: "rgba(255, 165, 0, 1.0)",
     LABEL_OFFSET: {
         x: 0,
-        y: -5,
+        y: -7.5,
         z: 10
     },
     MONTHS: [
