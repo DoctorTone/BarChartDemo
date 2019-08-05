@@ -30,11 +30,13 @@ class Framework extends BaseApp {
         const barMat = new THREE.MeshLambertMaterial( {color: APPCONFIG.BAR_COLOUR} );
         const bars = [];
         let barMesh;
-        for(let i=0; i<APPCONFIG.NUM_BARS_PER_ROW; ++i) {
-            barMesh = new THREE.Mesh(barGeom, barMat);
-            bars.push(barMesh);
-            barMesh.position.set(APPCONFIG.barStartPos.x + (APPCONFIG.BAR_INC_X * i), APPCONFIG.barStartPos.y, APPCONFIG.barStartPos.z);
-            this.root.add(barMesh);
+        for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
+            for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
+                barMesh = new THREE.Mesh(barGeom, barMat);
+                bars.push(barMesh);
+                barMesh.position.set(APPCONFIG.barStartPos.x + (APPCONFIG.BAR_INC_X * bar), APPCONFIG.barStartPos.y, APPCONFIG.barStartPos.z + (APPCONFIG.BAR_INC_Z * row));
+                this.root.add(barMesh);
+            }
         }
     }
 }

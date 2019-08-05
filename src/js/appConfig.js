@@ -12,7 +12,8 @@ const APPCONFIG = {
         y: 0,
         z: 0
     },
-    BAR_INC_X: 15
+    BAR_INC_X: 15,
+    BAR_INC_Z: 15
 }
 
 export { APPCONFIG };
