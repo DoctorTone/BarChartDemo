@@ -20,6 +20,31 @@ const APPCONFIG = {
         0x0000ff,
         0xffff00,
         0x00ffff
+    ],
+    LABEL_SCALE: {
+        x: 20,
+        y: 5,
+        z: 1
+    },
+    LABEL_TEXTCOLOUR: "rgba(255, 165, 0, 1.0)",
+    LABEL_OFFSET: {
+        x: 0,
+        y: -5,
+        z: 10
+    },
+    MONTHS: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
     ]
 }
 

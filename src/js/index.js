@@ -3,11 +3,13 @@ import * as THREE from "three";
 
 import { BaseApp } from "./baseApp";
 import { APPCONFIG } from "./appConfig";
+import { LabelManager } from "./LabelManager";
 
 class Framework extends BaseApp {
     constructor() {
         super();
         this.barMaterials = [];
+        this.labelManager = new LabelManager();
     }
 
     setContainer(container) {
@@ -39,12 +41,28 @@ class Framework extends BaseApp {
         const bars = [];
         this.createBarMaterials();
         let barMesh;
+        let label;
+        let labelProperty;
+        
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
             for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
                 barMesh = new THREE.Mesh(barGeom, this.barMaterials[row]);
                 bars.push(barMesh);
                 barMesh.position.set(APPCONFIG.barStartPos.x + (APPCONFIG.BAR_INC_X * bar), APPCONFIG.barStartPos.y, APPCONFIG.barStartPos.z + (APPCONFIG.BAR_INC_Z * row));
                 this.root.add(barMesh);
+                // Labels
+                if (row === 0) {
+                    labelProperty = {};
+                    labelProperty.position = new THREE.Vector3();
+                    labelProperty.position.copy(barMesh.position);
+                    labelProperty.position.add(APPCONFIG.LABEL_OFFSET);
+                    labelProperty.scale = APPCONFIG.LABEL_SCALE;
+                    labelProperty.visibility = true;
+                    labelProperty.textColour = APPCONFIG.LABEL_TEXTCOLOUR;
+                    labelProperty.multiLine = false;
+                    label = this.labelManager.create("monthLabel", APPCONFIG.MONTHS[bar], labelProperty);
+                    this.root.add(label.getSprite());
+                }
             }
         }
     }
