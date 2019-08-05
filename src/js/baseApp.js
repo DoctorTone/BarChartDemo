@@ -1,6 +1,6 @@
 //Common base class for web apps
 
-import { SceneConfig } from "./sceneConfig";
+import { SCENECONFIG } from "./sceneConfig";
 import * as THREE from "three";
 //import * as TrackballControls from "three-trackballcontrols";
 let TrackballControls = require("three-trackballcontrols");
@@ -41,7 +41,7 @@ export class BaseApp {
 
     createRenderer() {
         this.renderer = new THREE.WebGLRenderer( {antialias : true, alpha: true});
-        this.renderer.setClearColor(SceneConfig.clearColour, 1.0);
+        this.renderer.setClearColor(SCENECONFIG.clearColour, 1.0);
         this.renderer.shadowMap.enabled = true;
 
         this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -123,7 +123,7 @@ export class BaseApp {
         let scene = new THREE.Scene();
         this.scenes.push(scene);
 
-        let ambientLight = new THREE.AmbientLight(SceneConfig.ambientLightColour);
+        let ambientLight = new THREE.AmbientLight(SCENECONFIG.ambientLightColour);
         scene.add(ambientLight);
 
         /*
@@ -140,7 +140,7 @@ export class BaseApp {
          */
 
 
-        let pointLight = new THREE.PointLight(SceneConfig.pointLightColour);
+        let pointLight = new THREE.PointLight(SCENECONFIG.pointLightColour);
         pointLight.position.set(0,1000,1500);
         pointLight.name = 'PointLight';
         scene.add(pointLight);
@@ -157,8 +157,8 @@ export class BaseApp {
     }
 
     createCamera() {
-        let camNear = new THREE.Vector3(SceneConfig.CameraPos.x, SceneConfig.CameraPos.y, SceneConfig.CameraPos.z);
-        this.camera = new THREE.PerspectiveCamera(SceneConfig.FOV, this.container.clientWidth / window.innerHeight, SceneConfig.NEAR_PLANE, SceneConfig.FAR_PLANE );
+        let camNear = new THREE.Vector3(SCENECONFIG.CameraPos.x, SCENECONFIG.CameraPos.y, SCENECONFIG.CameraPos.z);
+        this.camera = new THREE.PerspectiveCamera(SCENECONFIG.FOV, this.container.clientWidth / window.innerHeight, SCENECONFIG.NEAR_PLANE, SCENECONFIG.FAR_PLANE );
         this.camera.position.copy(camNear);
         this.camPosNear = camNear;
     }
@@ -188,7 +188,7 @@ export class BaseApp {
 
         this.controls.keys = [ 65, 83, 68 ];
 
-        let lookAt = new THREE.Vector3(SceneConfig.LookAtPos.x, SceneConfig.LookAtPos.y, SceneConfig.LookAtPos.z);
+        let lookAt = new THREE.Vector3(SCENECONFIG.LookAtPos.x, SCENECONFIG.LookAtPos.y, SCENECONFIG.LookAtPos.z);
         this.controls.target.copy(lookAt);
     }
 

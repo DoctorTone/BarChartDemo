@@ -2,6 +2,7 @@ import $ from "jquery";
 import * as THREE from "three";
 
 import { BaseApp } from "./baseApp";
+import { APPCONFIG } from "./appConfig";
 
 class Framework extends BaseApp {
     constructor() {
@@ -25,10 +26,10 @@ class Framework extends BaseApp {
         this.addToScene(this.root);
 
         // Add simple 3D object
-        const boxGeom = new THREE.BoxBufferGeometry(10, 10, 10);
-        const boxMat = new THREE.MeshLambertMaterial( {color: 0xff0000});
-        const boxMesh = new THREE.Mesh(boxGeom, boxMat);
-        this.root.add(boxMesh);
+        const barGeom = new THREE.CylinderBufferGeometry(APPCONFIG.BAR_RADIUS, APPCONFIG.BAR_RADIUS, APPCONFIG.BAR_HEIGHT, APPCONFIG.BAR_SEGMENTS, APPCONFIG.BAR_SEGMENTS);
+        const barMat = new THREE.MeshLambertMaterial( {color: APPCONFIG.BAR_COLOUR} );
+        const barMesh = new THREE.Mesh(barGeom, barMat);
+        this.root.add(barMesh);
     }
 }
 
