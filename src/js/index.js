@@ -262,11 +262,18 @@ class Framework extends BaseApp {
     redrawScene(xIncrement, zIncrement) {
         const barsPerRow = APPCONFIG.NUM_BARS_PER_ROW;
         let currentBar;
+        let currentLabel;
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
             for(let bar=0; bar<barsPerRow; ++bar) {
                 currentBar = this.bars[(row * barsPerRow) + bar];
                 currentBar.position.x = APPCONFIG.barStartPos.x + (xIncrement * bar);
                 currentBar.position.z = APPCONFIG.barStartPos.z + (zIncrement * row);
+                if (row === 0) {
+                    currentLabel = this.labelManager.getLabel("monthLabel" + bar);
+                    if (currentLabel) {
+                        currentLabel.setXPosition(currentBar.position.x);
+                    }
+                }
             }
         }
     }

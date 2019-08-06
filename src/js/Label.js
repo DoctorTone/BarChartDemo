@@ -81,6 +81,14 @@ export class Label {
         this.sprite.visible = status;
     }
 
+    setPosition(position) {
+        this.sprite.position.copy(position);
+    }
+
+    setXPosition(xPos) {
+        this.sprite.position.x = xPos;
+    }
+
     setWorldPosition(matrix) {
         this.sprite.position.setFromMatrixPosition(matrix);
     }
