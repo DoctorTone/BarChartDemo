@@ -89,6 +89,10 @@ export class Label {
         this.sprite.position.x = xPos;
     }
 
+    setZPosition(zPos) {
+        this.sprite.position.z = zPos;
+    }
+
     setWorldPosition(matrix) {
         this.sprite.position.setFromMatrixPosition(matrix);
     }

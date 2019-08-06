@@ -274,6 +274,12 @@ class Framework extends BaseApp {
                         currentLabel.setXPosition(currentBar.position.x);
                     }
                 }
+                if (bar === 0) {
+                    currentLabel = this.labelManager.getLabel("yearLabel" + row);
+                    if (currentLabel) {
+                        currentLabel.setZPosition(currentBar.position.z);
+                    }
+                }
             }
         }
     }
