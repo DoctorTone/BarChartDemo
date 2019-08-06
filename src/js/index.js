@@ -242,6 +242,19 @@ class Framework extends BaseApp {
             currentYear.visible = !currentYear.visible;
         }
     }
+
+    toggleMonth(month) {
+        const years = ["Year1", "Year2", "Year3", "Year4", "Year5"];
+        let monthName;
+        let currentMonth;
+        for(let i=0, numYears=years.length; i<numYears; ++i) {
+            monthName = years[i] + month;
+            currentMonth = this.getObjectByName(monthName);
+            if (currentMonth) {
+                currentMonth.visible = !currentMonth.visible;
+            }
+        }
+    }
 }
 
 $(document).ready( () => {
