@@ -48,6 +48,21 @@ class Framework extends BaseApp {
             Year3: true,
             Year4: true,
             Year5: true
+        };
+
+        let monthConfig = {
+            Jan: true,
+            Feb: true,
+            Mar: true,
+            Apr: true,
+            May: true,
+            Jun: true,
+            Jul: true,
+            Aug: true,
+            Sep: true,
+            Oct: true,
+            Nov: true,
+            Dec: true
         }
 
         let gui = new controlkit();
@@ -79,6 +94,66 @@ class Framework extends BaseApp {
                     }
                 })
             .addSubGroup( {label: "Months", enable: false} )
+                .addCheckbox(monthConfig, "Jan", {
+                    onChange: () => {
+                        this.toggleMonth("Jan");
+                    }
+                })
+                .addCheckbox(monthConfig, "Feb", {
+                    onChange: () => {
+                        this.toggleMonth("Feb");
+                    }
+                })
+                .addCheckbox(monthConfig, "Mar", {
+                    onChange: () => {
+                        this.toggleMonth("Mar");
+                    }
+                })
+                .addCheckbox(monthConfig, "Apr", {
+                    onChange: () => {
+                        this.toggleMonth("Apr");
+                    }
+                })
+                .addCheckbox(monthConfig, "May", {
+                    onChange: () => {
+                        this.toggleMonth("May");
+                    }
+                })
+                .addCheckbox(monthConfig, "Jun", {
+                    onChange: () => {
+                        this.toggleMonth("Jun");
+                    }
+                })
+                .addCheckbox(monthConfig, "Jul", {
+                    onChange: () => {
+                        this.toggleMonth("Jul");
+                    }
+                })
+                .addCheckbox(monthConfig, "Aug", {
+                    onChange: () => {
+                        this.toggleMonth("Aug");
+                    }
+                })
+                .addCheckbox(monthConfig, "Sep", {
+                    onChange: () => {
+                        this.toggleMonth("Sep");
+                    }
+                })
+                .addCheckbox(monthConfig, "Oct", {
+                    onChange: () => {
+                        this.toggleMonth("Oct");
+                    }
+                })
+                .addCheckbox(monthConfig, "Nov", {
+                    onChange: () => {
+                        this.toggleMonth("Nov");
+                    }
+                })
+                .addCheckbox(monthConfig, "Dec", {
+                    onChange: () => {
+                        this.toggleMonth("Dec");
+                    }
+                })
 
         this.gui = gui;
     }
