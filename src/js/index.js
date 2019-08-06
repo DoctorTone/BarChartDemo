@@ -203,6 +203,11 @@ class Framework extends BaseApp {
         let monthData;
         let currentYear;
         let currentGroup;
+        // Lines
+        const lineColour = new THREE.Color();
+        lineColour.setHex(0xdadada);
+        let linePositions = [];
+        let lineColours = [];
         
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
             currentYear = row + 1;
@@ -240,6 +245,8 @@ class Framework extends BaseApp {
                     labelProperty.multiLine = false;
                     label = this.labelManager.create("monthLabel" + bar, APPCONFIG.MONTHS[bar], labelProperty);
                     this.root.add(label.getSprite());
+                    linePositions.push(barMesh.position.x, barMesh.position.y, barMesh.position.z);
+                    lineColours.push(lineColour.r, lineColour.g, lineColour.b);
                 }
                 if (bar === 0) {
                     labelProperty = {};
@@ -260,27 +267,9 @@ class Framework extends BaseApp {
         this.bars = bars;
 
         // Lines
-        let positions = [];
-        positions.push(0, 5, 0);
-        positions.push(0, 5, 6);
-        positions.push(0, 5, 12);
-        positions.push(0, 5, 18);
-        positions.push(0, 5, 24);
-        positions.push(0, 5, 30);
-
-        let colours = [];
-        let colour = new THREE.Color();
-        colour.setHex(0xdadada);
-        colours.push(colour.r, colour.g, colour.b);
-        colours.push(colour.r, colour.g, colour.b);
-        colours.push(colour.r, colour.g, colour.b);
-        colours.push(colour.r, colour.g, colour.b);
-        colours.push(colour.r, colour.g, colour.b);
-        colours.push(colour.r, colour.g, colour.b);
-
-        let geom = new LineGeometry();
-        geom.setPositions(positions);
-        geom.setColors(colours);
+        let lineGeom = new LineGeometry();
+        lineGeom.setPositions(linePositions);
+        lineGeom.setColors(lineColours);
 
         let lineMat = new LineMaterial( {
             color: 0xffffff,
@@ -291,7 +280,7 @@ class Framework extends BaseApp {
 
         lineMat.resolution.set( window.innerWidth, window.innerHeight ); // resolution of the viewport
 
-        let line = new Line2(geom, lineMat);
+        let line = new Line2(lineGeom, lineMat);
         line.computeLineDistances();
         let scale = 1;
         line.scale.set(scale, scale, scale);
