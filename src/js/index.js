@@ -63,7 +63,12 @@ class Framework extends BaseApp {
             Oct: true,
             Nov: true,
             Dec: true
-        }
+        };
+
+        let scaleConfig = {
+            Month: 1,
+            range: [1, 3]
+        };
 
         let gui = new controlkit();
         gui.addPanel( {label: "Configuration", enable: false})
@@ -154,6 +159,12 @@ class Framework extends BaseApp {
                         this.toggleMonth("Dec");
                     }
                 })
+            .addSubGroup( {label: "Scale", enable: false} )
+                .addSlider(scaleConfig, "Month", "range", {
+                    onChange: () => {
+                        this.scaleMonths(scaleConfig.Month);
+                    }
+                })
 
         this.gui = gui;
     }
@@ -214,7 +225,7 @@ class Framework extends BaseApp {
                     labelProperty.visibility = true;
                     labelProperty.textColour = APPCONFIG.LABEL_TEXTCOLOUR;
                     labelProperty.multiLine = false;
-                    label = this.labelManager.create("monthLabel", APPCONFIG.MONTHS[bar], labelProperty);
+                    label = this.labelManager.create("monthLabel" + bar, APPCONFIG.MONTHS[bar], labelProperty);
                     this.root.add(label.getSprite());
                 }
                 if (bar === 0) {
@@ -227,13 +238,26 @@ class Framework extends BaseApp {
                     labelProperty.visibility = true;
                     labelProperty.textColour = APPCONFIG.LABEL_TEXTCOLOUR;
                     labelProperty.multiLine = false;
-                    label = this.labelManager.create("yearLabel", APPCONFIG.YEARS[row], labelProperty);
+                    label = this.labelManager.create("yearLabel" + row, APPCONFIG.YEARS[row], labelProperty);
                     this.root.add(label.getSprite());
                 }
             }
         }
 
+        this.bars = bars;
+
         this.createGUI();
+    }
+
+    redrawScene(xIncrement) {
+        const barsPerRow = APPCONFIG.NUM_BARS_PER_ROW;
+        let currentBar;
+        for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
+            for(let bar=0; bar<barsPerRow; ++bar) {
+                currentBar = this.bars[(row * barsPerRow) + bar];
+                currentBar.position.x = APPCONFIG.barStartPos.x + (xIncrement * bar);
+            }
+        }
     }
 
     toggleYear(year) {
@@ -254,6 +278,11 @@ class Framework extends BaseApp {
                 currentMonth.visible = !currentMonth.visible;
             }
         }
+    }
+
+    scaleMonths(scale) {
+        let scaledIncX = APPCONFIG.BAR_INC_X * scale;
+        this.redrawScene(scaledIncX);
     }
 }
 
