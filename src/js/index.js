@@ -1,5 +1,8 @@
 import $ from "jquery";
 import * as THREE from "three";
+import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
+import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial';
+import { Line2 } from 'three/examples/jsm/lines/Line2';
 
 import { BaseApp } from "./baseApp";
 import { APPCONFIG } from "./appConfig";
@@ -255,6 +258,44 @@ class Framework extends BaseApp {
         }
 
         this.bars = bars;
+
+        // Lines
+        let positions = [];
+        positions.push(0, 5, 0);
+        positions.push(0, 5, 6);
+        positions.push(0, 5, 12);
+        positions.push(0, 5, 18);
+        positions.push(0, 5, 24);
+        positions.push(0, 5, 30);
+
+        let colours = [];
+        let colour = new THREE.Color();
+        colour.setHex(0xdadada);
+        colours.push(colour.r, colour.g, colour.b);
+        colours.push(colour.r, colour.g, colour.b);
+        colours.push(colour.r, colour.g, colour.b);
+        colours.push(colour.r, colour.g, colour.b);
+        colours.push(colour.r, colour.g, colour.b);
+        colours.push(colour.r, colour.g, colour.b);
+
+        let geom = new LineGeometry();
+        geom.setPositions(positions);
+        geom.setColors(colours);
+
+        let lineMat = new LineMaterial( {
+            color: 0xffffff,
+            linewidth: 10,
+            vertexColors: THREE.VertexColors,
+            dashed: false
+        });
+
+        lineMat.resolution.set( window.innerWidth, window.innerHeight ); // resolution of the viewport
+
+        let line = new Line2(geom, lineMat);
+        line.computeLineDistances();
+        let scale = 1;
+        line.scale.set(scale, scale, scale);
+        this.root.add(line);
 
         this.createGUI();
     }
