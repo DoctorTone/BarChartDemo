@@ -245,7 +245,7 @@ class Framework extends BaseApp {
                     labelProperty.multiLine = false;
                     label = this.labelManager.create("monthLabel" + bar, APPCONFIG.MONTHS[bar], labelProperty);
                     this.root.add(label.getSprite());
-                    linePositions.push(barMesh.position.x, barMesh.position.y, barMesh.position.z);
+                    linePositions.push(barMesh.position.x, barMesh.position.y*2, barMesh.position.z);
                     lineColours.push(lineColour.r, lineColour.g, lineColour.b);
                 }
                 if (bar === 0) {
