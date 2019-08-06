@@ -65,8 +65,13 @@ class Framework extends BaseApp {
             Dec: true
         };
 
-        let scaleConfig = {
+        let scaleMonthConfig = {
             Month: 1,
+            range: [1, 3]
+        };
+
+        let scaleYearConfig = {
+            Year: 1,
             range: [1, 3]
         };
 
@@ -160,9 +165,14 @@ class Framework extends BaseApp {
                     }
                 })
             .addSubGroup( {label: "Scale", enable: false} )
-                .addSlider(scaleConfig, "Month", "range", {
+                .addSlider(scaleMonthConfig, "Month", "range", {
                     onChange: () => {
-                        this.scaleMonths(scaleConfig.Month);
+                        this.scaleBars(scaleMonthConfig.Month, scaleYearConfig.Year);
+                    }
+                })
+                .addSlider(scaleYearConfig, "Year", "range", {
+                    onChange: () => {
+                        this.scaleBars(scaleMonthConfig.Month, scaleYearConfig.Year);
                     }
                 })
 
@@ -249,13 +259,14 @@ class Framework extends BaseApp {
         this.createGUI();
     }
 
-    redrawScene(xIncrement) {
+    redrawScene(xIncrement, zIncrement) {
         const barsPerRow = APPCONFIG.NUM_BARS_PER_ROW;
         let currentBar;
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
             for(let bar=0; bar<barsPerRow; ++bar) {
                 currentBar = this.bars[(row * barsPerRow) + bar];
                 currentBar.position.x = APPCONFIG.barStartPos.x + (xIncrement * bar);
+                currentBar.position.z = APPCONFIG.barStartPos.z + (zIncrement * row);
             }
         }
     }
@@ -280,9 +291,10 @@ class Framework extends BaseApp {
         }
     }
 
-    scaleMonths(scale) {
-        let scaledIncX = APPCONFIG.BAR_INC_X * scale;
-        this.redrawScene(scaledIncX);
+    scaleBars(xScale, zScale) {
+        let scaledIncX = APPCONFIG.BAR_INC_X * xScale;
+        let scaledIncZ = APPCONFIG.BAR_INC_Z * zScale;
+        this.redrawScene(scaledIncX, scaledIncZ);
     }
 }
 
