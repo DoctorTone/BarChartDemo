@@ -314,7 +314,19 @@ class Framework extends BaseApp {
                     labelProperty.multiLine = false;
                     label = this.labelManager.create("monthLabel" + bar, APPCONFIG.MONTHS[bar], labelProperty);
                     this.root.add(label.getSprite());
+
+                    // Value labels
+                    labelProperty.position.copy(barMesh.position);
+                    labelProperty.position.y *= 2;
+                    labelProperty.position.y += APPCONFIG.VALUE_OFFSET;
+                    labelProperty.scale = APPCONFIG.VALUE_SCALE;
+                    if (monthData < 0.5) {
+                        monthData = 0;
+                    }
+                    label = this.labelManager.create("valueLabel" + bar, monthData, labelProperty);
+                    this.root.add(label.getSprite());
                 }
+
                 if (bar === 0) {
                     labelProperty = {};
                     labelProperty.position = new THREE.Vector3();
