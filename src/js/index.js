@@ -78,6 +78,14 @@ class Framework extends BaseApp {
             range: [1, 3]
         };
 
+        let trendConfig = {
+            Year1: true,
+            Year2: true,
+            Year3: true,
+            Year4: true,
+            Year5: true
+        };
+
         let gui = new controlkit();
         gui.addPanel( {label: "Configuration", enable: false})
             .addSubGroup( {label: "Years", enable: false} )
@@ -176,6 +184,32 @@ class Framework extends BaseApp {
                 .addSlider(scaleYearConfig, "Year", "range", {
                     onChange: () => {
                         this.scaleBars(scaleMonthConfig.Month, scaleYearConfig.Year);
+                    }
+                })
+            .addSubGroup( {label: "Trends", enable: false} )
+                .addCheckbox(trendConfig, "Year1", {
+                    onChange: () => {
+                        this.toggleTrend("Year1");
+                    }
+                })
+                .addCheckbox(trendConfig, "Year2", {
+                    onChange: () => {
+                        this.toggleTrend("Year2");
+                    }
+                })
+                .addCheckbox(trendConfig, "Year3", {
+                    onChange: () => {
+                        this.toggleTrend("Year3");
+                    }
+                })
+                .addCheckbox(trendConfig, "Year4", {
+                    onChange: () => {
+                        this.toggleTrend("Year4");
+                    }
+                })
+                .addCheckbox(trendConfig, "Year5", {
+                    onChange: () => {
+                        this.toggleTrend("Year5");
                     }
                 })
 
@@ -294,6 +328,8 @@ class Framework extends BaseApp {
             lineGeom.setColors(lineColours);
 
             line = new Line2(lineGeom, lineMat);
+            currentYear = i + 1;
+            line.name = "Year" + currentYear + "Trend";
             line.computeLineDistances();
             line.scale.set(scale, scale, scale);
             this.root.add(line);
@@ -332,6 +368,10 @@ class Framework extends BaseApp {
         if (currentYear) {
             currentYear.visible = !currentYear.visible;
         }
+    }
+
+    toggleTrend(year) {
+
     }
 
     toggleMonth(month) {
