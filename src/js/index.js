@@ -322,10 +322,12 @@ class Framework extends BaseApp {
         let lineGeom;
         let line;
         const scale = 1;
+        let lineGeoms = [];
         for(let i=0; i<numLineGeometries; ++i) {
             lineGeom = new LineGeometry();
             lineGeom.setPositions(monthlyLinePositions[i]);
             lineGeom.setColors(lineColours);
+            lineGeoms.push(lineGeom);
 
             line = new Line2(lineGeom, lineMat);
             currentYear = i + 1;
@@ -335,6 +337,7 @@ class Framework extends BaseApp {
             line.visible = false;
             this.root.add(line);
         }
+        this.lineGeoms = lineGeoms;
 
         this.createGUI();
     }
@@ -343,11 +346,17 @@ class Framework extends BaseApp {
         const barsPerRow = APPCONFIG.NUM_BARS_PER_ROW;
         let currentBar;
         let currentLabel;
+        let currentLineGeom;
+        let linePositions = [];
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
+            currentLineGeom = this.lineGeoms[row];
             for(let bar=0; bar<barsPerRow; ++bar) {
                 currentBar = this.bars[(row * barsPerRow) + bar];
                 currentBar.position.x = APPCONFIG.barStartPos.x + (xIncrement * bar);
                 currentBar.position.z = APPCONFIG.barStartPos.z + (zIncrement * row);
+                // Trends
+                linePositions.push(currentBar.position.x, currentBar.position.y * 2, currentBar.position.z);
+
                 if (row === 0) {
                     currentLabel = this.labelManager.getLabel("monthLabel" + bar);
                     if (currentLabel) {
@@ -361,6 +370,8 @@ class Framework extends BaseApp {
                     }
                 }
             }
+            currentLineGeom.setPositions(linePositions);
+            linePositions.length = 0;
         }
     }
 
