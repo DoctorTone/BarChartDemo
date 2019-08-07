@@ -3,6 +3,7 @@ body {
     margin: 0;
     overflow: hidden;
     color: orange;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .title {
     position: absolute;
