@@ -204,16 +204,14 @@ class Framework extends BaseApp {
         let currentYear;
         let currentGroup;
         // Lines
-        const lineColour = new THREE.Color();
-        lineColour.setHex(0xdadada);
-        let linePositions = [];
-        let lineColours = [];
+        let monthlyLinePositions = [];
         
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
             currentYear = row + 1;
             // Create group
             currentGroup = new THREE.Group();
             currentGroup.name = "Year" + currentYear;
+            let linePositions = [];
             for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
                 // Create mesh
                 barMesh = new THREE.Mesh(barGeom, this.barMaterials[row]);
@@ -230,6 +228,9 @@ class Framework extends BaseApp {
                 barMesh.position.y += (monthData * 5);
                 currentGroup.add(barMesh);
 
+                // Lines
+                linePositions.push(barMesh.position.x, barMesh.position.y*2, barMesh.position.z);
+
                 this.root.add(currentGroup);
 
                 // Labels
@@ -245,8 +246,6 @@ class Framework extends BaseApp {
                     labelProperty.multiLine = false;
                     label = this.labelManager.create("monthLabel" + bar, APPCONFIG.MONTHS[bar], labelProperty);
                     this.root.add(label.getSprite());
-                    linePositions.push(barMesh.position.x, barMesh.position.y*2, barMesh.position.z);
-                    lineColours.push(lineColour.r, lineColour.g, lineColour.b);
                 }
                 if (bar === 0) {
                     labelProperty = {};
@@ -262,14 +261,19 @@ class Framework extends BaseApp {
                     this.root.add(label.getSprite());
                 }
             }
+            monthlyLinePositions.push(linePositions);
         }
 
         this.bars = bars;
 
         // Lines
-        let lineGeom = new LineGeometry();
-        lineGeom.setPositions(linePositions);
-        lineGeom.setColors(lineColours);
+        const lineColour = new THREE.Color();
+        lineColour.setHex(0xdadada);
+        let lineColours = [];
+        const numPositions = monthlyLinePositions[0].length;
+        for(let i=0; i<numPositions; ++i) {
+            lineColours.push(lineColour.r, lineColour.g, lineColour.b);
+        }
 
         let lineMat = new LineMaterial( {
             color: 0xffffff,
@@ -278,13 +282,22 @@ class Framework extends BaseApp {
             dashed: false
         });
 
-        lineMat.resolution.set( window.innerWidth, window.innerHeight ); // resolution of the viewport
+        lineMat.resolution.set( window.innerWidth, window.innerHeight );
 
-        let line = new Line2(lineGeom, lineMat);
-        line.computeLineDistances();
-        let scale = 1;
-        line.scale.set(scale, scale, scale);
-        this.root.add(line);
+        const numLineGeometries = monthlyLinePositions.length;
+        let lineGeom;
+        let line;
+        const scale = 1;
+        for(let i=0; i<numLineGeometries; ++i) {
+            lineGeom = new LineGeometry();
+            lineGeom.setPositions(monthlyLinePositions[i]);
+            lineGeom.setColors(lineColours);
+
+            line = new Line2(lineGeom, lineMat);
+            line.computeLineDistances();
+            line.scale.set(scale, scale, scale);
+            this.root.add(line);
+        }
 
         this.createGUI();
     }
