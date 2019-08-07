@@ -371,7 +371,10 @@ class Framework extends BaseApp {
     }
 
     toggleTrend(year) {
-
+        let currentTrend = this.getObjectByName(year + "Trend");
+        if(currentTrend) {
+            currentTrend.visible = !currentTrend.visible;
+        }
     }
 
     toggleMonth(month) {
