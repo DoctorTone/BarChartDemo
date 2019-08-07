@@ -39,7 +39,7 @@ class Framework extends BaseApp {
     createBarMaterials() {
         let barMaterial;
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
-            barMaterial = new THREE.MeshLambertMaterial( {color: APPCONFIG.BAR_COLOURS[row]} );
+            barMaterial = new THREE.MeshLambertMaterial( {color: APPCONFIG.BAR_COLOURS[row], transparent: true, opacity: 1} );
             this.barMaterials.push(barMaterial);
         }
     }
@@ -85,6 +85,14 @@ class Framework extends BaseApp {
             Year4: false,
             Year5: false
         };
+
+        let transparentConfig = {
+            Year1: false,
+            Year2: false,
+            Year3: false,
+            Year4: false,
+            Year5: false
+        }
 
         let gui = new controlkit();
         gui.addPanel( {label: "Configuration", enable: false})
@@ -184,6 +192,32 @@ class Framework extends BaseApp {
                 .addSlider(scaleYearConfig, "Year", "range", {
                     onChange: () => {
                         this.scaleBars(scaleMonthConfig.Month, scaleYearConfig.Year);
+                    }
+                })
+            .addSubGroup( {label: "Transparent", enable: false} )
+                .addCheckbox(transparentConfig, "Year1", {
+                    onChange: () => {
+                        this.toggleTransparency("Year1");
+                    }
+                })
+                .addCheckbox(transparentConfig, "Year2", {
+                    onChange: () => {
+                        this.toggleTransparency("Year2");
+                    }
+                })
+                .addCheckbox(transparentConfig, "Year3", {
+                    onChange: () => {
+                        this.toggleTransparency("Year3");
+                    }
+                })
+                .addCheckbox(transparentConfig, "Year4", {
+                    onChange: () => {
+                        this.toggleTransparency("Year4");
+                    }
+                })
+                .addCheckbox(transparentConfig, "Year5", {
+                    onChange: () => {
+                        this.toggleTransparency("Year5");
                     }
                 })
             .addSubGroup( {label: "Trends", enable: false} )
@@ -399,6 +433,14 @@ class Framework extends BaseApp {
             if (currentMonth) {
                 currentMonth.visible = !currentMonth.visible;
             }
+        }
+    }
+
+    toggleTransparency(year) {
+        let currentYear = this.getObjectByName(year);
+        if (currentYear) {
+            let opacity = currentYear.children[0].material.opacity;
+            opacity === 1 ? currentYear.children[0].material.opacity = 0.5 : currentYear.children[0].material.opacity = 1.0;
         }
     }
 
