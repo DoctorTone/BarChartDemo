@@ -79,11 +79,11 @@ class Framework extends BaseApp {
         };
 
         let trendConfig = {
-            Year1: true,
-            Year2: true,
-            Year3: true,
-            Year4: true,
-            Year5: true
+            Year1: false,
+            Year2: false,
+            Year3: false,
+            Year4: false,
+            Year5: false
         };
 
         let gui = new controlkit();
@@ -332,6 +332,7 @@ class Framework extends BaseApp {
             line.name = "Year" + currentYear + "Trend";
             line.computeLineDistances();
             line.scale.set(scale, scale, scale);
+            line.visible = false;
             this.root.add(line);
         }
 
