@@ -92,7 +92,15 @@ class Framework extends BaseApp {
             Year3: false,
             Year4: false,
             Year5: false
-        }
+        };
+
+        let valueConfig = {
+            Year1: false,
+            Year2: false,
+            Year3: false,
+            Year4: false,
+            Year5: false
+        };
 
         let gui = new controlkit();
         gui.addPanel( {label: "Configuration", enable: false})
@@ -246,6 +254,32 @@ class Framework extends BaseApp {
                         this.toggleTrend("Year5");
                     }
                 })
+            .addSubGroup( {label: "Values", enable: false} )
+                .addCheckbox(valueConfig, "Year1", {
+                    onChange: () => {
+                        this.toggleValues("Year1");
+                    }
+                })
+                .addCheckbox(valueConfig, "Year2", {
+                    onChange: () => {
+                        this.toggleValues("Year2");
+                    }
+                })
+                .addCheckbox(valueConfig, "Year3", {
+                    onChange: () => {
+                        this.toggleValues("Year3");
+                    }
+                })
+                .addCheckbox(valueConfig, "Year4", {
+                    onChange: () => {
+                        this.toggleValues("Year4");
+                    }
+                })
+                .addCheckbox(valueConfig, "Year5", {
+                    onChange: () => {
+                        this.toggleValues("Year5");
+                    }
+                })
 
         this.gui = gui;
     }
@@ -283,7 +317,8 @@ class Framework extends BaseApp {
             this.root.add(currentGroup);
 
             currentValueGroup = new THREE.Group();
-            currentValueGroup.name = "Values" + currentYear;
+            currentValueGroup.name = "ValuesYear" + currentYear;
+            currentValueGroup.visible = false;
             this.root.add(currentValueGroup);
 
             let linePositions = [];
@@ -315,8 +350,8 @@ class Framework extends BaseApp {
                 labelProperty.position.copy(barMesh.position);
                 labelProperty.position.y *= 2;
                 labelProperty.position.y += APPCONFIG.VALUE_OFFSET;
-                labelProperty.scale = APPCONFIG.VALUE_SCALE;
                 labelProperty.visibility = true;
+                labelProperty.scale = APPCONFIG.VALUE_SCALE;
                 if (monthData < 0.5) {
                     monthData = 0;
                 }
@@ -460,6 +495,13 @@ class Framework extends BaseApp {
         if (currentYear) {
             let opacity = currentYear.children[0].material.opacity;
             opacity === 1 ? currentYear.children[0].material.opacity = 0.5 : currentYear.children[0].material.opacity = 1.0;
+        }
+    }
+
+    toggleValues(year) {
+        let currentYear = this.getObjectByName("Values" + year);
+        if (currentYear) {
+            currentYear.visible = !currentYear.visible;
         }
     }
 
