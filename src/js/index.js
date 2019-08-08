@@ -355,7 +355,7 @@ class Framework extends BaseApp {
                 if (monthData < 0.5) {
                     monthData = 0;
                 }
-                label = this.labelManager.create("valueLabel" + bar, monthData, labelProperty);
+                label = this.labelManager.create("valueLabel" + (row * APPCONFIG.NUM_BARS_PER_ROW) + bar, monthData, labelProperty);
                 currentValueGroup.add(label.getSprite());
 
                 // Labels
@@ -445,12 +445,22 @@ class Framework extends BaseApp {
                 // Trends
                 linePositions.push(currentBar.position.x, currentBar.position.y * 2, currentBar.position.z);
 
+                // Value labels
+                currentLabel = this.labelManager.getLabel("valueLabel" + (row * APPCONFIG.NUM_BARS_PER_ROW) + bar);
+                if (currentLabel) {
+                    currentLabel.setXPosition(currentBar.position.x);
+                    currentLabel.setZPosition(currentBar.position.z);
+                }
+
+                // Month labels
                 if (row === 0) {
                     currentLabel = this.labelManager.getLabel("monthLabel" + bar);
                     if (currentLabel) {
                         currentLabel.setXPosition(currentBar.position.x);
                     }
                 }
+
+                // Year labels
                 if (bar === 0) {
                     currentLabel = this.labelManager.getLabel("yearLabel" + row);
                     if (currentLabel) {
