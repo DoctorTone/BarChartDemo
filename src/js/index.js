@@ -271,6 +271,7 @@ class Framework extends BaseApp {
         let monthData;
         let currentYear;
         let currentGroup;
+        let currentValueGroup;
         // Lines
         let monthlyLinePositions = [];
         
@@ -279,8 +280,19 @@ class Framework extends BaseApp {
             // Create group
             currentGroup = new THREE.Group();
             currentGroup.name = "Year" + currentYear;
+            this.root.add(currentGroup);
+
+            currentValueGroup = new THREE.Group();
+            currentValueGroup.name = "Values" + currentYear;
+            this.root.add(currentValueGroup);
+
             let linePositions = [];
+
             for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
+                // Label properties
+                labelProperty = {};
+                labelProperty.position = new THREE.Vector3();
+
                 // Create mesh
                 barMesh = new THREE.Mesh(barGeom, this.barMaterials[row]);
                 barMesh.name = currentGroup.name + APPCONFIG.MONTHS[bar];
@@ -299,12 +311,20 @@ class Framework extends BaseApp {
                 // Lines
                 linePositions.push(barMesh.position.x, barMesh.position.y*2, barMesh.position.z);
 
-                this.root.add(currentGroup);
+                // Value labels
+                labelProperty.position.copy(barMesh.position);
+                labelProperty.position.y *= 2;
+                labelProperty.position.y += APPCONFIG.VALUE_OFFSET;
+                labelProperty.scale = APPCONFIG.VALUE_SCALE;
+                labelProperty.visibility = true;
+                if (monthData < 0.5) {
+                    monthData = 0;
+                }
+                label = this.labelManager.create("valueLabel" + bar, monthData, labelProperty);
+                currentValueGroup.add(label.getSprite());
 
                 // Labels
                 if (row === 0) {
-                    labelProperty = {};
-                    labelProperty.position = new THREE.Vector3();
                     labelProperty.position.copy(barMesh.position);
                     labelProperty.position.y = APPCONFIG.LABEL_HEIGHT;
                     labelProperty.position.add(APPCONFIG.LABEL_MONTH_OFFSET);
@@ -314,22 +334,9 @@ class Framework extends BaseApp {
                     labelProperty.multiLine = false;
                     label = this.labelManager.create("monthLabel" + bar, APPCONFIG.MONTHS[bar], labelProperty);
                     this.root.add(label.getSprite());
-
-                    // Value labels
-                    labelProperty.position.copy(barMesh.position);
-                    labelProperty.position.y *= 2;
-                    labelProperty.position.y += APPCONFIG.VALUE_OFFSET;
-                    labelProperty.scale = APPCONFIG.VALUE_SCALE;
-                    if (monthData < 0.5) {
-                        monthData = 0;
-                    }
-                    label = this.labelManager.create("valueLabel" + bar, monthData, labelProperty);
-                    this.root.add(label.getSprite());
                 }
 
                 if (bar === 0) {
-                    labelProperty = {};
-                    labelProperty.position = new THREE.Vector3();
                     labelProperty.position.copy(barMesh.position);
                     labelProperty.position.y = APPCONFIG.LABEL_HEIGHT;
                     labelProperty.position.add(APPCONFIG.LABEL_YEAR_OFFSET);
