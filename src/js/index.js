@@ -279,27 +279,27 @@ class Framework extends BaseApp {
             .addSubGroup( {label: "Scales", enable: false} )
                 .addSlider(scaleYearConfig, "Year1", "range", {
                     onChange: () => {
-                        this.scaleYears(scaleYearConfig.Year1);
+                        this.scaleYears("Year1", scaleYearConfig.Year1);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year2", "range", {
                     onChange: () => {
-                        this.scaleYears(scaleYearConfig.Year2);
+                        this.scaleYears("Year2", scaleYearConfig.Year2);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year3", "range", {
                     onChange: () => {
-                        this.scaleYears(scaleYearConfig.Year3);
+                        this.scaleYears("Year3", scaleYearConfig.Year3);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year4", "range", {
                     onChange: () => {
-                        this.scaleYears(scaleYearConfig.Year4);
+                        this.scaleYears("Year4", scaleYearConfig.Year4);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year5", "range", {
                     onChange: () => {
-                        this.scaleYears(scaleYearConfig.Year5);
+                        this.scaleYears("Year5", scaleYearConfig.Year5);
                     }
                 })
             .addSubGroup( {label: "Values", enable: false} )
@@ -593,6 +593,13 @@ class Framework extends BaseApp {
         let scaledIncX = APPCONFIG.BAR_INC_X * xScale;
         let scaledIncZ = APPCONFIG.BAR_INC_Z * zScale;
         this.redrawScene(scaledIncX, scaledIncZ);
+    }
+
+    scaleYears(name, scale) {
+        let currentYear = this.getObjectByName(name);
+        if (currentYear) {
+            currentYear.scale.set(1, scale, 1);
+        }
     }
 
     rotateCamera(status, direction) {
