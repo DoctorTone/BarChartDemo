@@ -547,6 +547,23 @@ class Framework extends BaseApp {
         }
     }
 
+    redrawValueLabels(currentYear) {
+        // Get year number
+        let yearNum = currentYear.name.slice(-1);
+        if (yearNum) {
+            let yScale = currentYear.scale.y;
+            let year = parseInt(yearNum, 10);
+            let row = year - 1;
+            let label;
+            for (let i=0; i<APPCONFIG.NUM_BARS_PER_ROW; ++i) {
+                label = this.labelManager.getLabel("valueLabel" + (row * APPCONFIG.NUM_BARS_PER_ROW) + i);
+                if (label) {
+                    label.setHeight((currentYear.children[i].position.y * yScale * 2) + APPCONFIG.VALUE_OFFSET);
+                }
+            }
+        }
+    }
+
     toggleYear(year) {
         let currentYear = this.getObjectByName(year);
         if (currentYear) {
@@ -600,6 +617,7 @@ class Framework extends BaseApp {
         if (currentYear) {
             currentYear.scale.set(1, scale, 1);
         }
+        this.redrawValueLabels(currentYear);
     }
 
     rotateCamera(status, direction) {
