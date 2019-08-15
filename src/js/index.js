@@ -191,7 +191,7 @@ class Framework extends BaseApp {
                         this.toggleMonth("Dec");
                     }
                 })
-            .addSubGroup( {label: "Scale", enable: false} )
+            .addSubGroup( {label: "Gaps", enable: false} )
                 .addSlider(scaleMonthConfig, "Month", "range", {
                     onChange: () => {
                         this.scaleBars(scaleMonthConfig.Month, scaleYearConfig.Year);
