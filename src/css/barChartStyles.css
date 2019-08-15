@@ -15,10 +15,14 @@ body {
     position: absolute;
     text-align: center;
 }
+.panel p {
+    margin-bottom: 0.25rem;
+}
 #rotate {
     bottom: 15%;
     right: 1%;
     width: 20%;
+    color: white;
 }
 #rotate button {
     width: 45%;
