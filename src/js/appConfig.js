@@ -16,8 +16,8 @@ const APPCONFIG = {
         y: 0,
         z: 0
     },
-    BAR_INC_X: 20,
-    BAR_INC_Z: -15,
+    BAR_INC_X: 30,
+    BAR_INC_Z: -45,
     BAR_COLOURS: [
         0xff0000,
         0x00ff00,
