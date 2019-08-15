@@ -5,12 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
         <title>3D Bar Chart Demo</title>
 
-        <link rel="stylesheet" href="./src/css/frameworkStyles.css">
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="./src/css/barChartStyles.css">
     </head>
 <body>
   <div id="WebGL-Output">
     <div class="title">
       <h1>3D Bar Chart</h1>
+    </div>
+    <div id="rotate" class="panel">
+      <p>Zoom</p>
+      <div class="">
+        <button type="button" id="zoomOut" class="btn btn-primary"><img src="./images/minus.png"></button>
+        <button type="button" id="zoomIn" class="btn btn-primary"><img src="./images/add.png"></button>
+      </div>
+      <p>Rotate</p>
+      <div class="mb-1">
+        <button type="button" id="rotateLeft" class="btn btn-primary"><img src="./images/leftWhite.png"></button>
+        <button type="button" id="rotateRight" class="btn btn-primary"><img src="./images/rightWhite.png"></button>
+      </div>
+      <div>
+        <button type="button" id="rotateUp" class="btn btn-primary"><img src="./images/upWhite.png"></button>
+        <button type="button" id="rotateDown" class="btn btn-primary"><img src="./images/downWhite.png"></button>
+      </div>
     </div>
   </div>  
   <script src="./src/js/index.js"></script>
