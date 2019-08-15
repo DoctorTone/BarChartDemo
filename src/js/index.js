@@ -111,6 +111,19 @@ class Framework extends BaseApp {
             Year5: false
         };
 
+        let scaleYearConfig = {
+            Year1: 1,
+            range: [0.1, 3],
+            Year2: 1,
+            range: [0.1, 3],
+            Year3: 1,
+            range: [0.1, 3],
+            Year4: 1,
+            range: [0.1, 3],
+            Year5: 1,
+            range: [0.1, 3],
+        };
+
         let gui = new controlkit();
         gui.addPanel( {label: "Configuration", enable: false})
             .addSubGroup( {label: "Years", enable: false} )
@@ -261,6 +274,32 @@ class Framework extends BaseApp {
                 .addCheckbox(trendConfig, "Year5", {
                     onChange: () => {
                         this.toggleTrend("Year5");
+                    }
+                })
+            .addSubGroup( {label: "Scales", enable: false} )
+                .addSlider(scaleYearConfig, "Year1", "range", {
+                    onChange: () => {
+                        this.scaleYears(scaleYearConfig.Year1);
+                    }
+                })
+                .addSlider(scaleYearConfig, "Year2", "range", {
+                    onChange: () => {
+                        this.scaleYears(scaleYearConfig.Year2);
+                    }
+                })
+                .addSlider(scaleYearConfig, "Year3", "range", {
+                    onChange: () => {
+                        this.scaleYears(scaleYearConfig.Year3);
+                    }
+                })
+                .addSlider(scaleYearConfig, "Year4", "range", {
+                    onChange: () => {
+                        this.scaleYears(scaleYearConfig.Year4);
+                    }
+                })
+                .addSlider(scaleYearConfig, "Year5", "range", {
+                    onChange: () => {
+                        this.scaleYears(scaleYearConfig.Year5);
                     }
                 })
             .addSubGroup( {label: "Values", enable: false} )
