@@ -68,12 +68,12 @@ class Framework extends BaseApp {
             Dec: true
         };
 
-        let scaleMonthConfig = {
+        let gapMonthConfig = {
             Month: 1,
             range: [1, 3]
         };
 
-        let scaleYearConfig = {
+        let gapYearConfig = {
             Year: 1,
             range: [1, 3]
         };
@@ -192,14 +192,14 @@ class Framework extends BaseApp {
                     }
                 })
             .addSubGroup( {label: "Gaps", enable: false} )
-                .addSlider(scaleMonthConfig, "Month", "range", {
+                .addSlider(gapMonthConfig, "Month", "range", {
                     onChange: () => {
-                        this.scaleBars(scaleMonthConfig.Month, scaleYearConfig.Year);
+                        this.scaleBars(gapMonthConfig.Month, gapYearConfig.Year);
                     }
                 })
-                .addSlider(scaleYearConfig, "Year", "range", {
+                .addSlider(gapYearConfig, "Year", "range", {
                     onChange: () => {
-                        this.scaleBars(scaleMonthConfig.Month, scaleYearConfig.Year);
+                        this.scaleBars(gapMonthConfig.Month, gapYearConfig.Year);
                     }
                 })
             .addSubGroup( {label: "Transparent", enable: false} )
