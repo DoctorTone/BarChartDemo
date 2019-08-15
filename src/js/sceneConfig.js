@@ -10,9 +10,9 @@ const SCENECONFIG = {
         z: 150
     },
     LookAtPos: {
-        x: -5,
-        y: 31,
-        z: -14
+        x: 0,
+        y: 0,
+        z: 0
     },
     NEAR_PLANE: 0.1,
     FAR_PLANE: 10000,
