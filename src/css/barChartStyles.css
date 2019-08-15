@@ -32,6 +32,14 @@ body {
     left: 1%;
     width: 100%;
 }
+#info {
+    bottom: 1%;
+    right: 1%;
+    width: 10%;
+}
+#info img {
+    width: 100%;
+}
 
 /* Larger screens */
 @media (min-width: 1200px) {
