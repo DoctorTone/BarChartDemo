@@ -68,7 +68,12 @@ const APPCONFIG = {
         "Year 3",
         "Year 4",
         "Year 5"
-    ]
+    ],
+    RIGHT: 1,
+    LEFT: 0,
+    UP: 2,
+    DOWN: 3,
+    ZOOM_SPEED: 0.1
 }
 
 export { APPCONFIG };

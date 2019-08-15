@@ -16,6 +16,15 @@ class Framework extends BaseApp {
         super();
         this.barMaterials = [];
         this.labelManager = new LabelManager();
+        this.cameraRotate = false;
+        this.rotSpeed = Math.PI/20;
+        this.rotDirection = 1;
+        this.zoomingIn = false;
+        this.zoomingOut = false;
+        this.zoomSpeed = APPCONFIG.ZOOM_SPEED;
+
+        //Temp variables
+        this.tempVec = new THREE.Vector3();
     }
 
     setContainer(container) {
@@ -430,6 +439,16 @@ class Framework extends BaseApp {
         this.createGUI();
     }
 
+    update() {
+        let delta = this.clock.getDelta();
+
+        if (this.cameraRotate) {
+            this.root.rotation[this.rotAxis] += (this.rotSpeed * this.rotDirection * delta);
+        }
+
+        super.update();
+    }
+
     redrawScene(xIncrement, zIncrement) {
         const barsPerRow = APPCONFIG.NUM_BARS_PER_ROW;
         let currentBar;
@@ -520,6 +539,35 @@ class Framework extends BaseApp {
         let scaledIncZ = APPCONFIG.BAR_INC_Z * zScale;
         this.redrawScene(scaledIncX, scaledIncZ);
     }
+
+    rotateCamera(status, direction) {
+        switch (direction) {
+            case APPCONFIG.RIGHT:
+                this.rotDirection = 1;
+                this.rotAxis = `y`;
+                break;
+
+            case APPCONFIG.LEFT:
+                this.rotDirection = -1;
+                this.rotAxis = `y`;
+                break;
+
+            case APPCONFIG.UP:
+                this.rotDirection = 1;
+                this.rotAxis = `x`;
+                break;
+
+            case APPCONFIG.DOWN:
+                this.rotDirection = -1;
+                this.rotAxis = `x`;
+                break;
+
+            default:
+                break;
+        };
+         
+        this.cameraRotate = status;
+    }
 }
 
 $(document).ready( () => {
@@ -531,4 +579,60 @@ $(document).ready( () => {
     app.createScene();
 
     app.run();
+
+    // Elements
+    let rotateLeft = $("#rotateLeft");
+    let rotateRight = $("#rotateRight");
+    let rotateUp = $("#rotateUp");
+    let rotateDown = $("#rotateDown");
+    let zoomIn = $("#zoomIn");
+    let zoomOut = $("#zoomOut");
+
+    rotateLeft.on("mousedown", () => {
+        app.rotateCamera(true, APPCONFIG.LEFT);
+    });
+
+    rotateLeft.on("mouseup", () => {
+        app.rotateCamera(false);
+    });
+
+    rotateRight.on("mousedown", () => {
+        app.rotateCamera(true, APPCONFIG.RIGHT);
+    });
+
+    rotateRight.on("mouseup", () => {
+        app.rotateCamera(false);
+    });
+
+    rotateUp.on("mousedown", () => {
+        app.rotateCamera(true, APPCONFIG.UP);
+    });
+
+    rotateUp.on("mouseup", () => {
+        app.rotateCamera(false);
+    });
+
+    rotateDown.on("mousedown", () => {
+        app.rotateCamera(true, APPCONFIG.DOWN);
+    });
+
+    rotateDown.on("mouseup", () => {
+        app.rotateCamera(false);
+    });
+
+    zoomIn.on("mousedown", () => {
+        app.zoomIn(true);
+    });
+
+    zoomIn.on("mouseup", () => {
+        app.zoomIn(false);
+    });
+
+    zoomOut.on("mousedown", () => {
+        app.zoomOut(true);
+    });
+
+    zoomOut.on("mouseup", () => {
+        app.zoomOut(false);
+    });
 });
