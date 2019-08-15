@@ -446,6 +446,22 @@ class Framework extends BaseApp {
             this.root.rotation[this.rotAxis] += (this.rotSpeed * this.rotDirection * delta);
         }
 
+        if(this.zoomingIn) {
+            this.tempVec.copy(this.camera.position);
+            this.tempVec.multiplyScalar(this.zoomSpeed * delta);
+            this.root.position.add(this.tempVec);
+            //DEBUG
+            //console.log("Root = ", this.root.position);
+        }
+
+        if(this.zoomingOut) {
+            this.tempVec.copy(this.camera.position);
+            this.tempVec.multiplyScalar(this.zoomSpeed * delta);
+            this.root.position.sub(this.tempVec);
+            //DEBUG
+            //console.log("Root = ", this.root.position);
+        }
+
         super.update();
     }
 
@@ -567,6 +583,14 @@ class Framework extends BaseApp {
         };
          
         this.cameraRotate = status;
+    }
+
+    zoomIn(status) {
+        this.zoomingIn = status;
+    }
+
+    zoomOut(status) {
+        this.zoomingOut = status;
     }
 }
 
