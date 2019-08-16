@@ -5,9 +5,9 @@ const SCENECONFIG = {
     ambientLightColour: 0x383838,
     pointLightColour: 0xffffff,
     CameraPos: {
-        x: -200,
+        x: 0,
         y: 150,
-        z: 275
+        z: 350
     },
     LookAtPos: {
         x: 0,

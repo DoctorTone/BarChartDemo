@@ -1,6 +1,7 @@
 // General parameters for this app
 
 const APPCONFIG = {
+    ROOT_ROTATE: Math.PI/4,
     BAR_COLOUR : 0xfff000,
     BAR_RADIUS: 5,
     BAR_HEIGHT: 10,

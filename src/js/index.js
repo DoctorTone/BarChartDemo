@@ -338,6 +338,7 @@ class Framework extends BaseApp {
         // Create root object.
         this.root = new THREE.Object3D();
         this.addToScene(this.root);
+        this.root.rotation.y = APPCONFIG.ROOT_ROTATE;
 
         // Add ground
         this.addGroundPlane();
