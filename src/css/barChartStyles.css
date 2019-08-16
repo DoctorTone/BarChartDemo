@@ -49,6 +49,16 @@ body {
     width: 100%;
 }
 
+/* Small screens */
+@media (min-width: 576px) {
+    .title {
+        text-align: center;
+    }
+    #rotate {
+        width: 15%;
+    }
+}
+
 /* Small screen - landscape */
 @media (min-width: 576px) and (orientation: landscape) {
     .title {
@@ -60,6 +70,17 @@ body {
     }
     #info {
         width: 7.5%;
+    }
+}
+
+/* iPad in landscape */
+@media (min-width: 992px) {
+    #rotate {
+        width: 10%;
+        top: 60%;
+    }
+    #info {
+        width: 6%;
     }
 }
 
