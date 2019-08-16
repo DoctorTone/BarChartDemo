@@ -17,6 +17,9 @@ body {
 .modal {
     color: black;
 }
+#guiWidth {
+    width: 175px;
+}
 .panel {
     position: absolute;
     text-align: center;
@@ -73,6 +76,15 @@ body {
     }
     #info {
         width: 7.5%;
+    }
+    #guiWidth {
+        width: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+    #guiWidth {
+        width: 300px;
     }
 }
 

@@ -125,8 +125,10 @@ class Framework extends BaseApp {
             range: [0.1, 3],
         };
 
+        let guiWidth = $('#guiWidth').css("width");
+        guiWidth = parseInt(guiWidth, 10);
         let gui = new controlkit();
-        gui.addPanel( {label: "Configuration", width: 175, enable: false})
+        gui.addPanel( {label: "Configuration", width: guiWidth, enable: false})
             .addSubGroup( {label: "Years", enable: false} )
                 .addCheckbox(yearConfig, "Year1", {
                     onChange: () => {
