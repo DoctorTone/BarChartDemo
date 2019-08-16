@@ -7,7 +7,7 @@ const SCENECONFIG = {
     CameraPos: {
         x: 0,
         y: 150,
-        z: 350
+        z: 500
     },
     LookAtPos: {
         x: 0,
