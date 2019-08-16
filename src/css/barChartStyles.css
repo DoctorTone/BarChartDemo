@@ -9,7 +9,10 @@ body {
     position: absolute;
     top: 0;
     width: 100%;
-    text-align: center;
+    text-align: left;
+}
+.title h1 {
+    font-size: 1.75rem;
 }
 .panel {
     position: absolute;
