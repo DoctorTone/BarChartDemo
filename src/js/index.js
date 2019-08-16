@@ -125,7 +125,7 @@ class Framework extends BaseApp {
         };
 
         let gui = new controlkit();
-        gui.addPanel( {label: "Configuration", enable: false})
+        gui.addPanel( {label: "Configuration", width: 175, enable: false})
             .addSubGroup( {label: "Years", enable: false} )
                 .addCheckbox(yearConfig, "Year1", {
                     onChange: () => {
