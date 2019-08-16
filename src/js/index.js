@@ -8,6 +8,7 @@ import { BaseApp } from "./baseApp";
 import { APPCONFIG } from "./appConfig";
 import { LabelManager } from "./LabelManager";
 import controlkit from "controlkit";
+import bootstrap from "bootstrap";
 
 import salesData from "../../data/salesData.json";
 
@@ -802,5 +803,9 @@ $(document).ready( () => {
 
     zoomOut.on("touchend", () => {
         app.zoomOut(false);
+    });
+
+    $("#info").on("click", () => {
+        $("#infoModal").modal();
     });
 });
