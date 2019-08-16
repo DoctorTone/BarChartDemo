@@ -217,10 +217,16 @@ class Framework extends BaseApp {
                 .addSlider(gapMonthConfig, "Month", "range", {
                     onChange: () => {
                         this.scaleBars(gapMonthConfig.Month, gapYearConfig.Year);
+                    },
+                    onFinish: () => {
+                        this.scaleBars(gapMonthConfig.Month, gapYearConfig.Year);
                     }
                 })
                 .addSlider(gapYearConfig, "Year", "range", {
                     onChange: () => {
+                        this.scaleBars(gapMonthConfig.Month, gapYearConfig.Year);
+                    },
+                    onFinish: () => {
                         this.scaleBars(gapMonthConfig.Month, gapYearConfig.Year);
                     }
                 })
@@ -280,26 +286,41 @@ class Framework extends BaseApp {
                 .addSlider(scaleYearConfig, "Year1", "range", {
                     onChange: () => {
                         this.scaleYears("Year1", scaleYearConfig.Year1);
+                    },
+                    onFinish: () => {
+                        this.scaleYears("Year1", scaleYearConfig.Year1);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year2", "range", {
                     onChange: () => {
+                        this.scaleYears("Year2", scaleYearConfig.Year2);
+                    },
+                    onFinish: () => {
                         this.scaleYears("Year2", scaleYearConfig.Year2);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year3", "range", {
                     onChange: () => {
                         this.scaleYears("Year3", scaleYearConfig.Year3);
+                    },
+                    onFinish: () => {
+                        this.scaleYears("Year3", scaleYearConfig.Year3);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year4", "range", {
                     onChange: () => {
+                        this.scaleYears("Year4", scaleYearConfig.Year4);
+                    },
+                    onFinish: () => {
                         this.scaleYears("Year4", scaleYearConfig.Year4);
                     }
                 })
                 .addSlider(scaleYearConfig, "Year5", "range", {
                     onChange: () => {
                         this.scaleYears("Year5", scaleYearConfig.Year5);
+                    },
+                    onFinish: () => {
+                        this.scaleYears("Year4", scaleYearConfig.Year4);
                     }
                 })
             .addSubGroup( {label: "Values", enable: false} )
