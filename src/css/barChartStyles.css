@@ -90,12 +90,19 @@ body {
 /* Larger screens */
 @media (min-width: 1200px) {
     #rotate {
-        width: 6.5%;
+        width: 8%;
     }
     #rotate img {
         width: 100%;
     }
     #info {
         width: 4%;
+    }
+}
+
+/* Full HD screens */
+@media (min-width: 1600px) {
+    #rotate {
+        width: 7%;
     }
 }
