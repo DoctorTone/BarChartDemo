@@ -87,7 +87,7 @@ body {
 /* Larger screens */
 @media (min-width: 1200px) {
     #rotate {
-        width: 7.5%;
+        width: 6.5%;
     }
     #rotate img {
         width: 100%;
