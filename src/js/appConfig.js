@@ -43,10 +43,10 @@ const APPCONFIG = {
         y: 0,
         z: 0
     },
-    VALUE_OFFSET: 2,
+    VALUE_OFFSET: 5,
     VALUE_SCALE: {
-        x: 10,
-        y: 5,
+        x: 17.5,
+        y: 8.5,
         z: 1
     },
     MONTHS: [
