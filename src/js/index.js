@@ -583,8 +583,10 @@ class Framework extends BaseApp {
             let year = parseInt(yearNum, 10);
             let row = year - 1;
             let label;
+            let labelValue;
             for (let i=0; i<APPCONFIG.NUM_BARS_PER_ROW; ++i) {
-                label = this.labelManager.getLabel("valueLabel" + (row * APPCONFIG.NUM_BARS_PER_ROW) + i);
+                labelValue = (row * APPCONFIG.NUM_BARS_PER_ROW) + i;
+                label = this.labelManager.getLabel("valueLabel" + labelValue);
                 if (label) {
                     label.setHeight((currentYear.children[i].position.y * yScale * 2) + APPCONFIG.VALUE_OFFSET);
                 }
