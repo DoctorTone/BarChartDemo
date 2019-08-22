@@ -538,6 +538,7 @@ class Framework extends BaseApp {
         let currentLabel;
         let currentLineGeom;
         let linePositions = [];
+        let labelValue;
         for(let row=0; row<APPCONFIG.NUM_ROWS; ++row) {
             currentLineGeom = this.lineGeoms[row];
             for(let bar=0; bar<barsPerRow; ++bar) {
@@ -548,7 +549,8 @@ class Framework extends BaseApp {
                 linePositions.push(currentBar.position.x, currentBar.position.y * 2, currentBar.position.z);
 
                 // Value labels
-                currentLabel = this.labelManager.getLabel("valueLabel" + (row * APPCONFIG.NUM_BARS_PER_ROW) + bar);
+                labelValue = (row * APPCONFIG.NUM_BARS_PER_ROW) + bar;
+                currentLabel = this.labelManager.getLabel("valueLabel" + labelValue);
                 if (currentLabel) {
                     currentLabel.setXPosition(currentBar.position.x);
                     currentLabel.setZPosition(currentBar.position.z);
