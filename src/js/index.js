@@ -392,10 +392,8 @@ class Framework extends BaseApp {
             currentValueGroup = new THREE.Group();
             currentValueGroup.name = "ValuesYear" + currentYear;
             currentValueGroup.visible = false;
-            // DEBUG
-            currentGroup.add(currentValueGroup);
-
-            //this.root.add(currentValueGroup);
+            
+            this.root.add(currentValueGroup);
 
             let linePositions = [];
 
@@ -596,6 +594,11 @@ class Framework extends BaseApp {
         let currentYear = this.getObjectByName(year);
         if (currentYear) {
             currentYear.visible = !currentYear.visible;
+        }
+        // Toggle value display as well
+        let valueGroup = this.getObjectByName("Values" + year);
+        if (valueGroup) {
+            valueGroup.visible = currentYear.visible;
         }
     }
 
