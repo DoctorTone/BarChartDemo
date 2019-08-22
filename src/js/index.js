@@ -392,7 +392,10 @@ class Framework extends BaseApp {
             currentValueGroup = new THREE.Group();
             currentValueGroup.name = "ValuesYear" + currentYear;
             currentValueGroup.visible = false;
-            this.root.add(currentValueGroup);
+            // DEBUG
+            currentGroup.add(currentValueGroup);
+
+            //this.root.add(currentValueGroup);
 
             let linePositions = [];
 
