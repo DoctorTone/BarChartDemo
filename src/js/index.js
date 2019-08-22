@@ -158,62 +158,62 @@ class Framework extends BaseApp {
             .addSubGroup( {label: "Months", enable: false} )
                 .addCheckbox(monthConfig, "Jan", {
                     onChange: () => {
-                        this.toggleMonth("Jan");
+                        this.toggleMonth("Jan", 0);
                     }
                 })
                 .addCheckbox(monthConfig, "Feb", {
                     onChange: () => {
-                        this.toggleMonth("Feb");
+                        this.toggleMonth("Feb", 1);
                     }
                 })
                 .addCheckbox(monthConfig, "Mar", {
                     onChange: () => {
-                        this.toggleMonth("Mar");
+                        this.toggleMonth("Mar", 2);
                     }
                 })
                 .addCheckbox(monthConfig, "Apr", {
                     onChange: () => {
-                        this.toggleMonth("Apr");
+                        this.toggleMonth("Apr", 3);
                     }
                 })
                 .addCheckbox(monthConfig, "May", {
                     onChange: () => {
-                        this.toggleMonth("May");
+                        this.toggleMonth("May", 4);
                     }
                 })
                 .addCheckbox(monthConfig, "Jun", {
                     onChange: () => {
-                        this.toggleMonth("Jun");
+                        this.toggleMonth("Jun", 5);
                     }
                 })
                 .addCheckbox(monthConfig, "Jul", {
                     onChange: () => {
-                        this.toggleMonth("Jul");
+                        this.toggleMonth("Jul", 6);
                     }
                 })
                 .addCheckbox(monthConfig, "Aug", {
                     onChange: () => {
-                        this.toggleMonth("Aug");
+                        this.toggleMonth("Aug", 7);
                     }
                 })
                 .addCheckbox(monthConfig, "Sep", {
                     onChange: () => {
-                        this.toggleMonth("Sep");
+                        this.toggleMonth("Sep", 8);
                     }
                 })
                 .addCheckbox(monthConfig, "Oct", {
                     onChange: () => {
-                        this.toggleMonth("Oct");
+                        this.toggleMonth("Oct", 9);
                     }
                 })
                 .addCheckbox(monthConfig, "Nov", {
                     onChange: () => {
-                        this.toggleMonth("Nov");
+                        this.toggleMonth("Nov", 10);
                     }
                 })
                 .addCheckbox(monthConfig, "Dec", {
                     onChange: () => {
-                        this.toggleMonth("Dec");
+                        this.toggleMonth("Dec", 11);
                     }
                 })
             .addSubGroup( {label: "Gaps", enable: false} )
@@ -396,6 +396,7 @@ class Framework extends BaseApp {
             this.root.add(currentValueGroup);
 
             let linePositions = [];
+            let labelValue;
 
             for(let bar=0; bar<APPCONFIG.NUM_BARS_PER_ROW; ++bar) {
                 // Label properties
@@ -429,7 +430,8 @@ class Framework extends BaseApp {
                 if (monthData < 0.5) {
                     monthData = 0;
                 }
-                label = this.labelManager.create("valueLabel" + (row * APPCONFIG.NUM_BARS_PER_ROW) + bar, monthData, labelProperty);
+                labelValue = (row * APPCONFIG.NUM_BARS_PER_ROW) + bar;
+                label = this.labelManager.create("valueLabel" + labelValue, monthData, labelProperty);
                 currentValueGroup.add(label.getSprite());
 
                 // Labels
@@ -609,15 +611,26 @@ class Framework extends BaseApp {
         }
     }
 
-    toggleMonth(month) {
+    toggleMonth(monthName, monthNum) {
         const years = ["Year1", "Year2", "Year3", "Year4", "Year5"];
-        let monthName;
+        let month;
         let currentMonth;
-        for(let i=0, numYears=years.length; i<numYears; ++i) {
-            monthName = years[i] + month;
-            currentMonth = this.getObjectByName(monthName);
+        let numYears = years.length;
+        for(let i=0; i<numYears; ++i) {
+            month = years[i] + monthName;
+            currentMonth = this.getObjectByName(month);
             if (currentMonth) {
                 currentMonth.visible = !currentMonth.visible;
+            }
+        }
+        // Set value visibility
+        let column;
+        let label;
+        for (let i=0; i<numYears; ++i) {
+            column = monthNum + (i*APPCONFIG.NUM_BARS_PER_ROW);
+            label = this.labelManager.getLabel("valueLabel" + column);
+            if (label) {
+                label.setVisibility(currentMonth.visible);
             }
         }
     }
